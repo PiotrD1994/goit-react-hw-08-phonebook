@@ -1,22 +1,43 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import { contactsReducer } from './contactSlice.js';
-import { filterReducer } from './filterSlice';
+import {configureStore} from '@reduxjs/toolkit'
+import {getDefaultMiddleware} from '@reduxjs/toolkit'
+import {authReducer} from 'redux/auth/slice'
+import {contactsReducer} from 'redux/contacts/contactsSlice'
+import {filterReducer} from 'redux/filter/filterSlice'
+import storage from 'redux-persist/lib/storage'
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
-});
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist'
 
-const customizedMiddleware = (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  });
+const middleware = {
+    ...getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+        }
+    })
+}
+
+const authPersistConfig = {
+    key: 'auth',
+    storage,
+    whitelist:['token']
+}
 
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: customizedMiddleware,
-  devTools: process.env.NODE_ENV !== 'production'
-});
+    reducer: {
+        contacts: contactsReducer,
+        filter: filterReducer,
+        auth: persistReducer(authPersistConfig, authReducer)
+    },
+    middleware,
+    devTools: process.env.NODE_ENV === 'development'
+})
+
+export const persistor = persistStore(store)
