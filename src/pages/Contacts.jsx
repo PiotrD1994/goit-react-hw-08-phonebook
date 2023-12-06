@@ -17,7 +17,7 @@ export default function Tasks() {
 
   return (
     <>
-      <title>Your contacts</title>
+      <h2>Your contacts</h2>
       <ContactForm /> 
       <div>{isLoading && <Loader />}</div>{' '}
       <ContactList />
