@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {nanoid} from 'nanoid'
 import { useDispatch, useSelector } from "react-redux";
-import {Filter} from 'components/Filter/Filter.jsx'
-import { selectContacts } from "redux/contacts/selectors.js";
-import { addContact } from "redux/contacts/contactsSlice.js";
+import {Filter} from '../Filter/Filter.jsx'
+import { selectContacts } from "../../redux/contacts/selectors.js";
+import { addContact } from "../../redux/contacts/contactsSlice.js";
 
 const nameInputId = nanoid()
 const numberInputId = nanoid()

@@ -4,7 +4,7 @@ import {
     fetchContacts,
     addContacts,
     deleteContacts,
-} from 'redux/contacts/operations'
+} from '../../redux/contacts/operations.js'
 
 const getActions = type => isAnyOf(fetchContacts[type], addContacts[type], deleteContacts[type])
 
