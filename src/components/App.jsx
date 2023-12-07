@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, startTransition } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./Layout/Layout.jsx";
 import { PrivateRoute } from "./PrivateRoute.js";
 import { RestrictedRoute } from "./RestrictedRoute.js";
 import { refreshUser } from "redux/auth/operations.js";
-import { useAuth } from "hooks/useAuth.js";
+
 
 
 class ErrorBoundary extends React.Component {
@@ -40,10 +40,11 @@ const Contacts = lazy(() => import("../pages/Contacts.jsx"));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
+ 
   useEffect(() => {
-    dispatch(refreshUser());
+    startTransition(() => {
+      dispatch(refreshUser());
+    });
   }, [dispatch]);
 
   return (
@@ -54,9 +55,9 @@ const App = () => {
             <Route
               index
               element={
-                <Suspense fallback={<p>Loading...</p>}>
+                <startTransition>
                   <Home />
-                </Suspense>
+                </startTransition>
               }
             />
             <Route
@@ -65,9 +66,9 @@ const App = () => {
                 <RestrictedRoute
                   redirectTo="/login"
                   component={
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <startTransition>
                       <Register />
-                    </Suspense>
+                    </startTransition>
                   }
                 />
               }
@@ -78,9 +79,9 @@ const App = () => {
                 <RestrictedRoute
                   redirectTo="/contacts"
                   component={
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <startTransition>
                       <Login />
-                    </Suspense>
+                    </startTransition>
                   }
                 />
               }
@@ -91,9 +92,9 @@ const App = () => {
                 <PrivateRoute
                   redirectTo="/login"
                   component={
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <startTransition>
                       <Contacts />
-                    </Suspense>
+                    </startTransition>
                   }
                 />
               }
