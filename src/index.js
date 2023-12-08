@@ -7,15 +7,15 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App.jsx';
 
 const root = createRoot(document.getElementById('root'));
-
+const basename = '/react-homework-template';
 root.render(
   <React.StrictMode>
-  <Provider store={store}>
-  <PersistGate loading={null} persistor={persistor}>
-  <BrowserRouter >
-    <App />
-    </BrowserRouter>
-    </PersistGate>
-  </Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename={basename}>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

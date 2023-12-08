@@ -16,7 +16,7 @@ const setAuthHeader = token => {
     async (credentials, thunkAPI) => {
       try {
 
-        const res = await axios.post('/users/register', credentials); 
+        const res = await axios.post('/users/signup', credentials); 
         console.log(res.data);
         setAuthHeader(res.data.token); 
         return res.data; 

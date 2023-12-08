@@ -24,7 +24,6 @@ export const RegisterForm = () => {
                 type="text"
                 name="name"
                 placeholder="name"
-                pattern="^[^\d]+$"
                 required
                 />
             </label>
@@ -34,7 +33,6 @@ export const RegisterForm = () => {
             type="email"
             name="email"
             placeholder="e-mail"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             required
             />  
             </label>
@@ -44,7 +42,6 @@ export const RegisterForm = () => {
             type="password"
             name="password"
             placeholder="password"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             required
             />  
             </label>

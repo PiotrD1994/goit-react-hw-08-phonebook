@@ -22,7 +22,6 @@ export const LoginForm = () => {
             type="email"
             name="email"
             placeholder="e-mail"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             required
             />
         </label>
@@ -32,7 +31,6 @@ export const LoginForm = () => {
             type="password"
             name="password"
             placeholder="password"
-            pattern="^[a-zA-Z0-9!@#$%^&*()-_=+`~[\]{}|:<>/?]+$"
             required
             />
         </label>

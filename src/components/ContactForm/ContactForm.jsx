@@ -52,7 +52,6 @@ export const ContactForm = () => {
                 placeholder="name"
                 value={name}
                 onChange={handleChange}
-                pattern="^[^\d]+$"
                 required
                 />
             </label>
@@ -64,7 +63,6 @@ export const ContactForm = () => {
                 placeholder="phonenumber"
                 value={number}
                 onChange={handleChange}
-                pattern="\+\d{12}"
                 required
                 />
             </label>
