@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Filter} from '../Filter/Filter.jsx'
 import { selectContacts } from "../../redux/contacts/selectors.js";
 import { addContacts } from "../../redux/contacts/operations.js";
+import css from './ContactForm.module.css'
 
 const nameInputId = nanoid()
 const numberInputId = nanoid()
@@ -43,10 +44,11 @@ export const ContactForm = () => {
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor={nameInputId}>
+        <form className={css.form} onSubmit={handleSubmit}>
+            <label className={css.label} htmlFor={nameInputId}>
                 Name
-                <input
+                <div className={css.inputContainer}>
+                <input className={css.input}
                 type="text"
                 name="name"
                 placeholder="name"
@@ -54,10 +56,12 @@ export const ContactForm = () => {
                 onChange={handleChange}
                 required
                 />
+                </div>
             </label>
-            <label htmlFor={numberInputId}>
+            <label className={css.label} htmlFor={numberInputId}>
                 Number
-                <input
+                <div className={css.inputContainer}>
+                <input className={css.input}
                 type="tel"
                 name="number"
                 placeholder="phonenumber"
@@ -65,8 +69,9 @@ export const ContactForm = () => {
                 onChange={handleChange}
                 required
                 />
+                </div>
             </label>
-           <button type='submit'>Add contact</button>
+           <button className={css.button} type='submit'>Add contact</button>
         </form>
         <Filter/>
         </>

@@ -6,7 +6,6 @@ import { fetchContacts } from '../redux/contacts/operations.js';
 import { selectLoading } from '../redux/contacts/selectors.js';
 import { Loader } from '../components/Loader/Loader';
 
-
 export default function Tasks() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
@@ -15,10 +14,14 @@ export default function Tasks() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const centerHeadingStyle = {
+    textAlign: 'center',
+  };
+
   return (
     <>
-      <h2>Your contacts</h2>
-      <ContactForm /> 
+      <h2 style={centerHeadingStyle}>Your contacts</h2>
+      <ContactForm />
       <div>{isLoading && <Loader />}</div>
       <ContactList />
     </>
