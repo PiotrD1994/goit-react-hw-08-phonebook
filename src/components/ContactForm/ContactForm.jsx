@@ -3,7 +3,7 @@ import {nanoid} from 'nanoid'
 import { useDispatch, useSelector } from "react-redux";
 import {Filter} from '../Filter/Filter.jsx'
 import { selectContacts } from "../../redux/contacts/selectors.js";
-import { addContact } from "../../redux/contacts/contactsSlice.js";
+import { addContacts } from "../../redux/contacts/operations.js";
 
 const nameInputId = nanoid()
 const numberInputId = nanoid()
@@ -23,7 +23,7 @@ export const ContactForm = () => {
         alert('is already in contacts')
         return
        }
-       dispatch(addContact({name, number}))
+       dispatch(addContacts({name, number}))
        setName('')
        setNumber('')
     }
